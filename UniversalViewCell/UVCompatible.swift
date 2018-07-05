@@ -30,14 +30,12 @@ public protocol UVCompatible: TVCompatible {
 public func uCeller(_ classType: UIView.Type) -> UCeller {
     return {
         if classType is NibBased {
-            // sengaja force cast, yg tidak implement BaseReusableView2 akan crash
             return Bundle(for: classType).loadNibNamed(
                 String(describing: classType),
                 owner: nil,
                 options: nil
                 )![0] as! ReusableView
         }
-        // sengaja force cast, yg tidak implement BaseReusableView2 akan crash
         return classType.init() as! ReusableView
     }
 }
